@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <clipPath id="win"><rect x="0" y="0" width="1200" height="800" rx="14"/></clipPath>
+    <clipPath id="page"><rect x="0" y="44" width="1200" height="756"/></clipPath>
+    <linearGradient id="meter" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#7A5A2A"/>
+      <stop offset="100%" style="stop-color:#FFB13D"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#win)">
+    <!-- browser chrome -->
+    <rect width="1200" height="800" fill="#0E1013"/>
+    <rect width="1200" height="44" fill="#16191F"/>
+    <circle cx="26" cy="22" r="6" fill="#FF6A3D"/>
+    <circle cx="48" cy="22" r="6" fill="#FFB13D"/>
+    <circle cx="70" cy="22" r="6" fill="#6FD6C8"/>
+    <rect x="110" y="10" width="520" height="24" rx="6" fill="#1B1F27" stroke="#2A2F3A"/>
+    <text x="126" y="26" font-family="JetBrains Mono, Consolas, monospace" font-size="12" fill="#656B78">vantage-brief-cursor-ai-editor.html</text>
+
+    <g clip-path="url(#page)">
+      <!-- topographic texture -->
+      <g fill="none" stroke="#FFB13D" stroke-opacity="0.05">
+        <circle cx="1050" cy="140" r="70"/>
+        <circle cx="1050" cy="140" r="120"/>
+        <circle cx="1050" cy="140" r="170"/>
+      </g>
+
+      <!-- site header -->
+      <text x="72" y="96" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="20" font-weight="700" fill="#E7E9EE">▲ VANTAGE</text>
+      <text x="1128" y="96" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="12" letter-spacing="1.5" fill="#656B78">SIGNAL, NOT SEO</text>
+      <line x1="72" y1="118" x2="1128" y2="118" stroke="#2A2F3A"/>
+
+      <!-- eyebrow + title -->
+      <text x="72" y="168" font-family="JetBrains Mono, monospace" font-size="13" letter-spacing="2.5" fill="#FFB13D">BRIEF · LAST 30 DAYS</text>
+      <text x="72" y="212" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="34" font-weight="600" fill="#E7E9EE">Cursor AI editor</text>
+
+      <!-- summary block -->
+      <rect x="72" y="234" width="3" height="56" fill="#FFB13D"/>
+      <text x="94" y="254" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#9BA1AE">47 results from the last 30 days (21 Reddit, 14 Hacker News, 12 GitHub).</text>
+      <text x="94" y="276" font-family="IBM Plex Sans, sans-serif" font-size="15" fill="#9BA1AE">Top signal: "Cursor vs Copilot, six months in" on hackernews — 1,204 points.</text>
+
+      <!-- count pills -->
+      <g font-family="JetBrains Mono, monospace">
+        <rect x="72" y="310" width="96" height="52" rx="3" fill="#1B1F27" stroke="#2A2F3A"/>
+        <text x="86" y="336" font-size="19" fill="#E7E9EE">47</text>
+        <text x="86" y="352" font-size="9" fill="#656B78" letter-spacing="0.5">TOTAL</text>
+
+        <rect x="180" y="310" width="96" height="52" rx="3" fill="#1B1F27" stroke="#2A2F3A"/>
+        <text x="194" y="336" font-size="19" fill="#FF6A3D">21</text>
+        <text x="194" y="352" font-size="9" fill="#656B78" letter-spacing="0.5">REDDIT</text>
+
+        <rect x="288" y="310" width="112" height="52" rx="3" fill="#1B1F27" stroke="#2A2F3A"/>
+        <text x="302" y="336" font-size="19" fill="#FF9B3D">14</text>
+        <text x="302" y="352" font-size="9" fill="#656B78" letter-spacing="0.5">HACKER NEWS</text>
+
+        <rect x="412" y="310" width="102" height="52" rx="3" fill="#1B1F27" stroke="#2A2F3A"/>
+        <text x="426" y="336" font-size="19" fill="#6FD6C8">12</text>
+        <text x="426" y="352" font-size="9" fill="#656B78" letter-spacing="0.5">GITHUB</text>
+      </g>
+
+      <!-- ranked signal rows -->
+      <g font-family="IBM Plex Sans, sans-serif">
+        <!-- row 1 -->
+        <line x1="72" y1="400" x2="1128" y2="400" stroke="#2A2F3A"/>
+        <rect x="72" y="412" width="4" height="52" rx="2" fill="url(#meter)"/>
+        <rect x="92" y="416" width="72" height="16" rx="8" fill="#FF9B3D"/>
+        <text x="128" y="428" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0E1013">HACKERNEWS</text>
+        <text x="176" y="428" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFB13D">1,204 points</text>
+        <text x="284" y="428" font-family="JetBrains Mono, monospace" font-size="11" fill="#656B78">312 comments</text>
+        <text x="92" y="450" font-size="16" font-weight="600" fill="#E7E9EE">Cursor vs Copilot, six months in</text>
+
+        <!-- row 2 -->
+        <line x1="72" y1="478" x2="1128" y2="478" stroke="#2A2F3A"/>
+        <rect x="72" y="490" width="4" height="52" rx="2" fill="url(#meter)" opacity="0.75"/>
+        <rect x="92" y="494" width="60" height="16" rx="8" fill="#FF6A3D"/>
+        <text x="122" y="506" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0E1013">REDDIT</text>
+        <text x="164" y="506" font-family="JetBrains Mono, monospace" font-size="11" fill="#656B78">r/programming</text>
+        <text x="272" y="506" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFB13D">2,891 upvotes</text>
+        <text x="92" y="528" font-size="16" font-weight="600" fill="#E7E9EE">Why our team switched every editor to Cursor</text>
+
+        <!-- row 3 -->
+        <line x1="72" y1="556" x2="1128" y2="556" stroke="#2A2F3A"/>
+        <rect x="72" y="568" width="4" height="52" rx="2" fill="url(#meter)" opacity="0.55"/>
+        <rect x="92" y="572" width="60" height="16" rx="8" fill="#6FD6C8"/>
+        <text x="122" y="584" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0E1013">GITHUB</text>
+        <text x="176" y="584" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFB13D">3,402 stars</text>
+        <text x="92" y="606" font-size="16" font-weight="600" fill="#E7E9EE">cursor-ai/awesome-cursor-rules</text>
+
+        <!-- row 4 -->
+        <line x1="72" y1="634" x2="1128" y2="634" stroke="#2A2F3A"/>
+        <rect x="72" y="646" width="4" height="52" rx="2" fill="url(#meter)" opacity="0.4"/>
+        <rect x="92" y="650" width="60" height="16" rx="8" fill="#FF6A3D"/>
+        <text x="122" y="662" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" font-weight="700" fill="#0E1013">REDDIT</text>
+        <text x="164" y="662" font-family="JetBrains Mono, monospace" font-size="11" fill="#656B78">r/webdev</text>
+        <text x="252" y="662" font-family="JetBrains Mono, monospace" font-size="11" fill="#FFB13D">1,120 upvotes</text>
+        <text x="92" y="684" font-size="16" font-weight="600" fill="#E7E9EE">Cursor's new agent mode is genuinely different</text>
+      </g>
+
+      <line x1="72" y1="712" x2="1128" y2="712" stroke="#2A2F3A"/>
+      <text x="600" y="748" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#656B78">Reddit · Hacker News · GitHub — last 30 days, ranked by real engagement</text>
+    </g>
+  </g>
+  <rect x="1" y="1" width="1198" height="798" rx="13" fill="none" stroke="#2A2F3A"/>
+</svg>
