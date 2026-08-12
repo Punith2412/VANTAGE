@@ -4,7 +4,7 @@
 Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — scored by real attention, not SEO.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/2ee226b51c5aeaddca19d7e60eca3ddfac731ef9/vantage/docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
+  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/b04ad6bcdf9a6d0f01ebda7848f949d75bc6e103/vantage/docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
 </p>
 
 <p align="center">
@@ -13,6 +13,11 @@ Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — sco
   <img src="https://img.shields.io/badge/tests-pytest-orange" alt="pytest" />
   <img src="https://img.shields.io/badge/style-ruff-black" alt="Ruff" />
 </p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/b04ad6bcdf9a6d0f01ebda7848f949d75bc6e103/vantage/docs/vantage-screenshot.svg" alt="A generated Vantage brief — ranked signals with source badges and engagement meters" width="820" />
+</p>
+<p align="center"><sub>The self-contained dark-mode HTML brief Vantage generates for every search.</sub></p>
 
 Vantage is a lightweight, fully readable Python CLI that searches multiple public platforms **in parallel**, ranks results by actual community engagement, and produces a clean **Markdown + dark-mode HTML** brief.
 
