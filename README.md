@@ -4,7 +4,7 @@
 Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — scored by real attention, not SEO.
 
 <p align="center">
-  <img src="docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
+  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/main/docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@ Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — sco
 </p>
 
 <p align="center">
-  <img src="docs/vantage-screenshot.svg" alt="A generated Vantage brief — ranked signals with source badges and engagement meters" width="820" />
+  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/main/docs/vantage-screenshot.svg" alt="A generated Vantage brief — ranked signals with source badges and engagement meters" width="820" />
 </p>
 <p align="center"><sub>The self-contained dark-mode HTML brief Vantage generates for every search.</sub></p>
 
