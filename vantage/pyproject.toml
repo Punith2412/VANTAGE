@@ -1,0 +1,57 @@
+[project]
+name = "vantage-research"
+version = "0.1.0"
+description = "Vantage – AI-powered social signal research across Reddit, Hacker News, GitHub, Dev.to and more. Scored by real engagement, not SEO."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Punith Patil", email = "punithpatil2412@gmail.com" }
+]
+keywords = ["research", "social", "reddit", "hackernews", "github", "devto", "ai", "brief", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+dependencies = [
+    "httpx>=0.27.0",
+    "rich>=13.7.0",
+    "typer>=0.12.0",
+    "pydantic>=2.7.0",
+    "python-dateutil>=2.9.0",
+    "jinja2>=3.1.0",
+]
+
+[project.optional-dependencies]
+llm = [
+    "openai>=1.30.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",
+]
+
+[project.scripts]
+vantage = "vantage.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vantage"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

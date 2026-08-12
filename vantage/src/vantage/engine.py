@@ -1,0 +1,154 @@
+"""Core research engine: fan-out to sources, rank, optional synthesis."""
+
+from __future__ import annotations
+
+import asyncio
+import logging
+from datetime import datetime, timezone
+
+from rich.console import Console
+from rich.progress import Progress, SpinnerColumn, TextColumn
+
+from vantage.models import ResearchBrief, ResearchPlan, Signal, SourceType
+from vantage.sources import DevToSource, GitHubSource, HackerNewsSource, RedditSource
+from vantage.sources.base import BaseSource
+
+logger = logging.getLogger(__name__)
+console = Console()
+
+SOURCE_MAP: dict[SourceType, type[BaseSource]] = {
+    SourceType.REDDIT: RedditSource,
+    SourceType.HACKERNEWS: HackerNewsSource,
+    SourceType.GITHUB: GitHubSource,
+    SourceType.DEVTO: DevToSource,
+}
+
+
+async def run_research(plan: ResearchPlan) -> ResearchBrief:
+    """Execute parallel source searches and produce a ranked brief."""
+    sources: list[BaseSource] = []
+    for st in plan.sources:
+        cls = SOURCE_MAP.get(st)
+        if cls:
+            sources.append(cls(plan))
+
+    if not sources:
+        raise ValueError("No valid sources selected")
+
+    all_signals: list[Signal] = []
+
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        console=console,
+        transient=True,
+    ) as progress:
+        task = progress.add_task("Searching sources…", total=None)
+
+        async def _one(src: BaseSource) -> list[Signal]:
+            progress.update(task, description=f"Querying {src.source_type.value}…")
+            try:
+                return await src.search()
+            except Exception as e:
+                logger.exception("Source %s failed", src.source_type)
+                console.print(f"[yellow]Warning: {src.source_type.value} failed: {e}[/]")
+                return []
+
+        results = await asyncio.gather(*[_one(s) for s in sources])
+        for batch in results:
+            all_signals.extend(batch)
+
+    # Global ranking: engagement primary, then recency boost
+    now = datetime.now(timezone.utc)
+
+    def rank_key(s: Signal) -> float:
+        base = s.engagement
+        if s.published_at:
+            age_days = max((now - s.published_at).total_seconds() / 86400, 0.1)
+            # mild recency boost for very fresh items
+            recency = max(0, 30 - age_days) / 30 * 10
+            return base + recency
+        return base
+
+    ranked = sorted(all_signals, key=rank_key, reverse=True)
+
+    # Cap total and lightly diversify authors
+    seen_authors: dict[str, int] = {}
+    final: list[Signal] = []
+    for s in ranked:
+        author_key = (s.author or s.id).lower()
+        count = seen_authors.get(author_key, 0)
+        if count >= 3:
+            continue
+        seen_authors[author_key] = count + 1
+        final.append(s)
+        if len(final) >= 40:
+            break
+
+    summary, themes = _template_summary(plan.topic, final)
+
+    return ResearchBrief(
+        topic=plan.topic,
+        generated_at=now,
+        days_covered=plan.days,
+        total_signals=len(all_signals),
+        top_signals=final,
+        summary=summary,
+        key_themes=themes,
+        sources_queried=[s.source_type.value for s in sources],
+    )
+
+
+def _template_summary(topic: str, signals: list[Signal]) -> tuple[str, list[str]]:
+    """Produce a readable summary without requiring an LLM key."""
+    if not signals:
+        return (
+            f"No strong engagement signals found for “{topic}” in the selected window. "
+            "Try broadening the topic or increasing the day range.",
+            [],
+        )
+
+    by_source: dict[str, list[Signal]] = {}
+    for s in signals:
+        by_source.setdefault(s.source, []).append(s)
+
+    lines = [
+        f"Vantage research brief for **{topic}**",
+        "",
+        f"Collected {len(signals)} high-engagement signals across "
+        f"{', '.join(by_source.keys())}.",
+        "",
+    ]
+
+    # Top 5 overall
+    lines.append("### Top signals by engagement")
+    for i, s in enumerate(signals[:8], 1):
+        metrics = ""
+        if s.raw_metrics:
+            parts = [f"{k}={v}" for k, v in list(s.raw_metrics.items())[:3]]
+            metrics = f" ({', '.join(parts)})"
+        lines.append(f"{i}. [{s.title}]({s.url}) — {s.source}{metrics}")
+
+    # Theme extraction (very light heuristic)
+    themes: list[str] = []
+    titles = " ".join(s.title.lower() for s in signals[:20])
+    for candidate in [
+        "ai", "llm", "open source", "funding", "launch", "security",
+        "performance", "api", "release", "bug", "acquisition", "regulation",
+    ]:
+        if candidate in titles and candidate not in themes:
+            themes.append(candidate)
+    themes = themes[:6]
+
+    if themes:
+        lines.append("")
+        lines.append("### Recurring themes")
+        lines.append(", ".join(f"`{t}`" for t in themes))
+
+    lines.append("")
+    lines.append(
+        "_Generated by Vantage – engagement-ranked social signals. "
+        "No paid SEO ranking; pure community attention._"
+    )
+
+    return "\n".join(lines), themes
