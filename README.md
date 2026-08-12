@@ -4,7 +4,7 @@
 Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — scored by real attention, not SEO.
 
 <p align="center">
-  <img src="docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
+  <img src="https://raw.githubusercontent.com/Punith2412/VANTAGE/2ee226b51c5aeaddca19d7e60eca3ddfac731ef9/vantage/docs/vantage-banner.svg" alt="Vantage – Engagement-ranked social research" width="720" />
 </p>
 
 <p align="center">
