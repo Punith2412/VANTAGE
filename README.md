@@ -14,6 +14,11 @@ Reddit upvotes · Hacker News points · GitHub stars · Dev.to reactions — sco
   <img src="https://img.shields.io/badge/style-ruff-black" alt="Ruff" />
 </p>
 
+<p align="center">
+  <img src="docs/vantage-screenshot.svg" alt="A generated Vantage brief — ranked signals with source badges and engagement meters" width="820" />
+</p>
+<p align="center"><sub>The self-contained dark-mode HTML brief Vantage generates for every search.</sub></p>
+
 Vantage is a lightweight, fully readable Python CLI that searches multiple public platforms **in parallel**, ranks results by actual community engagement, and produces a clean **Markdown + dark-mode HTML** brief.
 
 It is intentionally small (~1 000 lines), testable, and fully under your control — no black-box agent skill, no heavy frameworks, no code you didn’t write.
